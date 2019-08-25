@@ -177,8 +177,6 @@ _Numbers are rounded to 3 decimal digits_
 
 ## Summary
 
-First, let's make the data a bit clearer to see:
-
 **numThreads=4, numLoops=1000, blockSize=1048576**
 ![numThreads=4, numLoops=1000, blockSize=1048576](data/4_threads.jpg)
 
