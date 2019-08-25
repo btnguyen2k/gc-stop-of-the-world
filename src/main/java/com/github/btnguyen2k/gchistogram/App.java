@@ -45,7 +45,8 @@ public final class App {
             .append("MaxMemory", format(Runtime.getRuntime().maxMemory(), 1)));
 
         DescriptiveStatistics statsLatency = new SynchronizedDescriptiveStatistics();
-        DescriptiveStatistics statsMemory = new SynchronizedDescriptiveStatistics();
+        DescriptiveStatistics statsMemTotal = new SynchronizedDescriptiveStatistics();
+        DescriptiveStatistics statsMemUsed = new SynchronizedDescriptiveStatistics();
         Thread[] threads = new Thread[numThreads];
         for (int i = 0; i < numThreads; i++) {
             threads[i] = new Thread(() -> {
@@ -54,9 +55,12 @@ public final class App {
                     long start = System.nanoTime();
                     byte[] block = new byte[blockSize];
                     block[0] = 0;
+                    long memTotal = Runtime.getRuntime().totalMemory();
+                    long memFree = Runtime.getRuntime().freeMemory();
                     long duration = System.nanoTime() - start;
                     statsLatency.addValue(duration);
-                    statsMemory.addValue(Runtime.getRuntime().totalMemory());
+                    statsMemTotal.addValue(memTotal);
+                    statsMemUsed.addValue(memTotal - memFree);
                     block = null;
                     try {
                         Thread.sleep(rand.nextInt(sleepTime));
@@ -71,26 +75,39 @@ public final class App {
             Thread.sleep(1000 + seed.nextInt(1000));
         }
 
+        long start = System.currentTimeMillis();
         for (Thread t : threads) {
             t.start();
         }
         for (Thread t : threads) {
             t.join();
         }
+        long duration = System.currentTimeMillis() - start;
 
-        System.out.println("Latency: " + new ToStringBuilder("Latency", ToStringStyle.JSON_STYLE)
+        System.out.println("Latency : " + new ToStringBuilder("Latency", ToStringStyle.JSON_STYLE)
             .append("Min", statsLatency.getMin()/1E6)
             .append("Max", statsLatency.getMax()/1E6)
             .append("Avg", statsLatency.getMean()/1E6)
             .append("P99", statsLatency.getPercentile(99)/1E6)
             .append("P95", statsLatency.getPercentile(95)/1E6)
             .append("P90", statsLatency.getPercentile(90)/1E6));
-        System.out.println("Memory : " + new ToStringBuilder("Memory", ToStringStyle.JSON_STYLE)
-            .append("Min", format(statsMemory.getMin(), 1))
-            .append("Max", format(statsMemory.getMax(), 1))
-            .append("Avg", format(statsMemory.getMean(), 1))
-            .append("P99", format(statsMemory.getPercentile(99), 1))
-            .append("P95", format(statsMemory.getPercentile(95), 1))
-            .append("P90", format(statsMemory.getPercentile(90), 1)));
+        System.out.println("MemTotal: " + new ToStringBuilder("MemoryTotal", ToStringStyle.JSON_STYLE)
+            .append("Min", format(statsMemTotal.getMin(), 1))
+            .append("Max", format(statsMemTotal.getMax(), 1))
+            .append("Avg", format(statsMemTotal.getMean(), 1))
+            .append("P99", format(statsMemTotal.getPercentile(99), 1))
+            .append("P95", format(statsMemTotal.getPercentile(95), 1))
+            .append("P90", format(statsMemTotal.getPercentile(90), 1)));
+        System.out.println("MemUsed : " + new ToStringBuilder("MemoryUsed", ToStringStyle.JSON_STYLE)
+            .append("Min", format(statsMemUsed.getMin(), 1))
+            .append("Max", format(statsMemUsed.getMax(), 1))
+            .append("Avg", format(statsMemUsed.getMean(), 1))
+            .append("P99", format(statsMemUsed.getPercentile(99), 1))
+            .append("P95", format(statsMemUsed.getPercentile(95), 1))
+            .append("P90", format(statsMemUsed.getPercentile(90), 1)));
+        System.out.println("RunTime : " + new ToStringBuilder("RunTime", ToStringStyle.JSON_STYLE)
+            .append("Duration", duration)
+            .append("TotalNumLoops", numThreads*numLoops)
+            .append("Speed", numThreads*numLoops*1000.0/duration));
     }
 }
