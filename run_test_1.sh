@@ -16,7 +16,7 @@ JVM_OPS_EXTRA=""
 echo "GC type: $GC_TYPE"
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=10 $CLASSNAME
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
-java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
+java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=1000 $CLASSNAME
 echo ""
 
 GC_TYPE="Parallel"
@@ -24,7 +24,7 @@ JVM_OPS_EXTRA=""
 echo "GC type: $GC_TYPE"
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=10 $CLASSNAME
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
-java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
+java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=1000 $CLASSNAME
 echo ""
 
 GC_TYPE="Serial"
@@ -32,7 +32,7 @@ JVM_OPS_EXTRA=""
 echo "GC type: $GC_TYPE"
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=10 $CLASSNAME
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
-java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
+java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=1000 $CLASSNAME
 echo ""
 
 GC_TYPE="Shenandoah"
@@ -40,7 +40,7 @@ JVM_OPS_EXTRA=""
 echo "GC type: $GC_TYPE"
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=10 $CLASSNAME
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
-java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
+java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=1000 $CLASSNAME
 echo ""
 
 GC_TYPE="Z"
@@ -48,5 +48,5 @@ JVM_OPS_EXTRA="-XX:+UnlockExperimentalVMOptions"
 echo "GC type: $GC_TYPE"
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=10 $CLASSNAME
 java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
-java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=100 $CLASSNAME
+java -cp $JAR_FILE $JVM_OPS $JVM_OPS_EXTRA -XX:+Use${GC_TYPE}GC -DnumThreads=$NUM_THREADS -DnumLoops=$NUM_LOOPS -DsleepTime=1000 $CLASSNAME
 echo ""
