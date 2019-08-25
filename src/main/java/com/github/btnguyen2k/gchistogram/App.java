@@ -37,7 +37,7 @@ public final class App {
         int sleepTime = parsePropsAsInt("sleepTime", 1000);
         Random seed = new Random(System.currentTimeMillis());
 
-        System.out.println("Info   : " +new ToStringBuilder("Info", ToStringStyle.JSON_STYLE)
+        System.out.println("Info " +new ToStringBuilder("Info", ToStringStyle.JSON_STYLE)
             .append("NumThreads", numThreads)
             .append("NumLoops", numLoops)
             .append("BlockSize", blockSize)
